@@ -1,6 +1,7 @@
 ---
 title: Vals AI
 type: summary
+audience: internal
 sources: [raw/vals-ai.md, https://www.vals.ai/home]
 updated: 2026-05-30
 ---

@@ -1,6 +1,7 @@
 ---
 title: How to Evaluate AI Agents (Hylak)
 type: summary
+audience: internal
 sources: [raw/howtoeval.md, https://www.howtoeval.com/]
 updated: 2026-05-30
 ---

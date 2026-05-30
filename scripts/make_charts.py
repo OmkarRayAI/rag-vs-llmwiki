@@ -72,7 +72,7 @@ def chart_score_by_difficulty(rows: list[dict], qs: dict, out: Path) -> None:
     ax.set_ylabel("Facts asserted (%)")
     ax.set_ylim(0, 105)
     ax.set_title("LLMWiki vs RAG: facts asserted, by question difficulty\n"
-                 "(GPT-5 mini, cleanly-judged subset)")
+                 "(GPT-5 mini, 50 questions, judge: GPT-5 mini + Gemini 2.5 Flash)")
     ax.legend(loc="upper right")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)

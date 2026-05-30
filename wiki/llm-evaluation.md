@@ -1,6 +1,7 @@
 ---
 title: LLM Evaluation
 type: concept
+audience: internal
 sources: [raw/vals-ai.md, raw/howtoeval.md]
 updated: 2026-05-30
 ---

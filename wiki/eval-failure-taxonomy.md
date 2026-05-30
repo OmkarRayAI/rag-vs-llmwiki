@@ -1,6 +1,7 @@
 ---
 title: Eval Failure Taxonomy (run 20260530-033125)
 type: concept
+audience: internal
 sources:
   - eval/runs/20260530-033125/results.jsonl
   - https://www.sh-reya.com/blog/ai-qual-analysis/

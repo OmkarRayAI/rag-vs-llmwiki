@@ -1,6 +1,7 @@
 ---
 title: activegraph
 type: summary
+audience: internal
 sources: [raw/activegraph.md, https://github.com/yoheinakajima/activegraph, https://pypi.org/project/activegraph/]
 updated: 2026-05-30
 ---
