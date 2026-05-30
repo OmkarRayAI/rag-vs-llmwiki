@@ -8,10 +8,11 @@ A small experiment, run honestly, with the failures published.
 
 | Question type | Wiki agent | RAG baseline |
 |---|---:|---:|
-| **Lookup** (single-period facts) | **37/43 (86%)** | 24/43 (56%) |
-| **Synthesis** (cross-period reasoning) | **73/77 (95%)** | 8/71 (11%) |
+| **Lookup** (single-period facts) | **39/54 (72%)** | 31/54 (57%) |
+| **Synthesis** (cross-period reasoning) | **106/119 (89%)** | 17/119 (14%) |
+| **Aggregate** | **145/173 (84%)** | 48/173 (28%) |
 
-GPT-5 mini via OpenRouter. 50 hand-authored questions over 6 BCG Banking Sector Roundup PDFs (~300 pages, H1 FY25 → 9M FY26). LLM-as-judge graded each expected fact YES/NO. **Cleanly-judged subset only**: 14 cells hit OpenRouter HTTP 402 mid-run and are excluded as `JUDGE_ERROR` rather than agent failure.
+GPT-5 mini answering both sides via OpenRouter. 50 hand-authored questions over 6 BCG Banking Sector Roundup PDFs (~300 pages, H1 FY25 → 9M FY26). LLM-as-judge: GPT-5 mini for the first 18 questions, Gemini 2.5 Flash for the rest (the original judge ran out of credits at q19; cells were re-graded with Gemini Flash via `eval/rejudge.py`). All 173 expected facts judged YES/NO; full results in `eval/runs/20260530-033125/results.jsonl`.
 
 ![Score by difficulty](docs/charts/score_by_difficulty.png)
 
@@ -106,8 +107,7 @@ index.md                   # catalog of raw/ and wiki/
 ## Honest caveats
 
 - **One model, one corpus.** Replicating with Sonnet/Opus and a second domain (tax) is the next step before this generalizes.
-- **The judge is fallible.** F7 paraphrase-miss is real. Stricter rubrics or a numeric-tolerance grader for numeric facts would change the wiki score upward by 3–5 cells.
-- **14 cells hit `JUDGE_ERROR` mid-run** when OpenRouter credits ran out. Disclosed in the score table; not silently dropped. Re-grade with `python eval/rejudge.py <run-id>` once credits are topped up.
+- **Judge is fallible and split.** First 18 questions graded by GPT-5 mini; q19–q50 graded by Gemini 2.5 Flash (after the original judge ran out of credits). Gemini grades stricter on paraphrases — switching judges between cells is a real source of noise. F7 (judge-paraphrase-miss) is documented in the failure taxonomy.
 - **The wiki was hand-built.** That's the experiment, not a product. A "wiki agent that maintains itself" (Karpathy's gist) is a separate question; this repo measures whether *having* a maintained wiki helps.
 - **The RAG baseline is deliberately standard, not optimal.** No reranker, no query rewriting, no hybrid search. The point is "what does the textbook approach buy you," not "is RAG fundamentally broken."
 

@@ -34,13 +34,15 @@ PITCH.md    # this file
 ## Headline metrics
 
 50 hand-authored corp-fin questions, 173 expected facts, GPT-5 mini
-via OpenRouter. Cleanly-judged subset (14 cells excluded as
-`JUDGE_ERROR` after OpenRouter HTTP 402 mid-run):
+answering both sides. Full dataset, fully judged (split judge: GPT-5
+mini for q1–q18, Gemini 2.5 Flash for q19–q50 after the original
+judge ran out of credits):
 
-| Question type           | Wiki agent      | RAG baseline   |
-|-------------------------|----------------:|---------------:|
-| Lookup (single-period)  | 37/43 (86%)     | 24/43 (56%)    |
-| Synthesis (cross-period)| 73/77 (95%)     | 8/71 (11%)     |
+| Question type           | Wiki agent       | RAG baseline    |
+|-------------------------|-----------------:|----------------:|
+| Lookup (single-period)  | 39/54 (72%)      | 31/54 (57%)     |
+| Synthesis (cross-period)| 106/119 (89%)    | 17/119 (14%)    |
+| Aggregate               | 145/173 (84%)    | 48/173 (28%)    |
 
 Run id: `eval/runs/20260530-033125/`. RAG: 350-word chunks of the 6
 PDFs, sentence-transformers MiniLM-L6 embeddings, top-8 retrieval.

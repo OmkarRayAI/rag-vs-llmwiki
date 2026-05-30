@@ -1,6 +1,7 @@
 ---
 title: Pulse (document parser)
 type: summary
+audience: internal
 sources:
   - raw/pulse.md
   - https://docs.runpulse.com

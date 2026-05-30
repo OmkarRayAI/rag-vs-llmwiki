@@ -1,6 +1,7 @@
 ---
 title: BCG Banking Sector Roundup
 type: summary
+audience: product
 sources:
   - raw/banking-sector-roundup.md
   - raw/banking-sector-roundup-h1fy25-vf.pdf

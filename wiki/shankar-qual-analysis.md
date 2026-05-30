@@ -1,6 +1,7 @@
 ---
 title: Shankar — Agent-Assisted Qualitative Analysis
 type: summary
+audience: internal
 sources:
   - raw/shankar-qual-analysis.md
   - https://www.sh-reya.com/blog/ai-qual-analysis/

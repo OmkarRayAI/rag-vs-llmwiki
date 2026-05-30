@@ -1,6 +1,7 @@
 ---
 title: Indian Banking, FY25–FY26 (cross-period themes)
 type: concept
+audience: product
 sources:
   - raw/banking-sector-roundup.md
   - raw/banking-sector-roundup-h1fy25-vf.pdf

@@ -70,12 +70,10 @@ Drafts for sharing the repo. Not committed to a single voice — pick by audienc
 
 ## Twitter — thread, credibility-first (RECOMMENDED)
 
-These are tightened versions that pre-empt the three most likely
-"actually..." replies:
-1. The N (50Q, 36 cleanly judged) is in the hook, not the caveats.
-2. "100% retrieval-driven" softened to "all 23, see taxonomy".
-3. The 8x-context-asymmetry between wiki and RAG is acknowledged
-   upfront — that's the wiki pattern's whole point, not an oversight.
+Updated 2026-05-30 with the fully-judged dataset (Gemini 2.5 Flash
+re-graded the q19+ cells the original judge couldn't reach). Numbers
+match `eval/runs/20260530-033125/results.jsonl` and the chart at
+`docs/charts/score_by_difficulty.png`.
 
 ### Tweet 1 — hook (with N upfront)
 
@@ -84,8 +82,7 @@ These are tightened versions that pre-empt the three most likely
 >
 > 6 BCG decks, 50 hand-authored questions, GPT-5 mini both sides.
 >
-> Apples-to-apples on 35 questions cleanly graded for both:
-> wiki 104/114 facts (91%), RAG 32/114 (28%).
+> Wiki 145/173 facts (84%). RAG 48/173 (28%).
 >
 > Why, and what failed: 👇
 >
@@ -103,13 +100,11 @@ These are tightened versions that pre-empt the three most likely
 
 ### Tweet 3 — the diagnosis
 
-> Why does RAG lose so badly on cross-period synthesis (11% vs 95%)?
+> Where does RAG lose? Cross-period synthesis: wiki 89% vs RAG 14%.
 >
-> Hand-coded all 23 RAG failures. Every single one was retrieval
-> (codes F1-F4 in the failure taxonomy). The model was honest — it
-> kept saying "I cannot find this" — but the data WAS in the corpus.
->
-> Top-k just didn't pull cross-period chunks together.
+> Hand-coded every failure (Shankar's qual-analysis discipline).
+> Every RAG miss on synthesis was retrieval-driven — the data WAS
+> in the corpus. Top-k just didn't pull six periods together.
 
 ### Tweet 4 — the failure quote (most retweetable)
 
@@ -126,11 +121,11 @@ These are tightened versions that pre-empt the three most likely
 
 > Caveats:
 >
-> • One model. One corpus. Fallible LLM-as-judge.
-> • Judge ran out of OpenRouter credits at q19 → 14 cells excluded
->   (`JUDGE_ERROR`, not silently dropped).
-> • ≥3 of the wiki "failures" are the judge paraphrase-marking-NO,
->   not real misses.
+> • One model. One corpus. ONE-METHOD baseline (vanilla top-k, no
+>   reranker / hybrid / query rewriting).
+> • Judge is split: GPT-5 mini graded q1–q18, Gemini 2.5 Flash
+>   graded q19–q50 (original judge ran out of credits mid-run).
+>   Switching judges between cells is real noise.
 > • The wiki was hand-built. This tests whether HAVING one helps,
 >   not whether an LLM can maintain one (Karpathy's separate claim).
 
@@ -209,11 +204,11 @@ These are tightened versions that pre-empt the three most likely
 >
 > 6 BCG Banking Sector Roundup PDFs (~300 pages, FY25 → 9M FY26). I hand-built the wiki — that's the experiment, not a product. Then I built a vanilla RAG baseline on the same PDFs (350-word chunks, MiniLM-L6 embeddings, top-8 retrieval — the textbook playbook). Authored 50 questions, ran both agents on GPT-5 mini, judged each expected fact YES/NO.
 >
-> **Result, apples-to-apples on 35 questions cleanly graded for both agents**
+> **Result, full 50 questions, all 173 facts judged**
 >
->  • Lookup ("what was Q1 FY26 GNPA?"): Wiki 86%, RAG 56%.
->  • Cross-period synthesis ("how did GNPA change across all 6 periods?"): Wiki 94%, RAG 11%.
->  • Aggregate: Wiki 104/114 facts (91%), RAG 32/114 (28%).
+>  • Lookup ("what was Q1 FY26 GNPA?"): Wiki 72%, RAG 57%.
+>  • Cross-period synthesis ("how did GNPA change across all 6 periods?"): Wiki 89%, RAG 14%.
+>  • Aggregate: Wiki 145/173 facts (84%), RAG 48/173 (28%).
 >
 > **What I take from it**
 >

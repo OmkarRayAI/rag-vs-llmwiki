@@ -2,9 +2,9 @@
 
 ## Aggregate score (correct facts / total facts)
 
-| Model | wiki | rag |
+| Model | rag | wiki |
 |---|---|---|
-| gpt-5-mini | 110/173 (64%) | 32/173 (18%) |
+| gpt-5-mini | 48/173 (28%) | 145/173 (84%) |
 
 ## Per-question detail
 
@@ -293,8 +293,8 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/4 | 18.89s |
-| rag | gpt-5-mini | 0/4 | 20.0s |
+| wiki | gpt-5-mini | 4/4 | 18.89s |
+| rag | gpt-5-mini | 3/4 | 20.0s |
 
 ### q39-roa-by-cat-comparison
 
@@ -302,7 +302,7 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/4 | 8.07s |
+| wiki | gpt-5-mini | 4/4 | 8.07s |
 | rag | gpt-5-mini | 0/4 | 18.1s |
 
 ### q4-rate-cycle-context
@@ -320,8 +320,8 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/4 | 16.0s |
-| rag | gpt-5-mini | 0/4 | 17.68s |
+| wiki | gpt-5-mini | 4/4 | 16.0s |
+| rag | gpt-5-mini | 1/4 | 17.68s |
 
 ### q41-pvt-new-leadership
 
@@ -329,8 +329,8 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/4 | 18.96s |
-| rag | gpt-5-mini | 0/4 | 17.75s |
+| wiki | gpt-5-mini | 3/4 | 18.96s |
+| rag | gpt-5-mini | 2/4 | 17.75s |
 
 ### q42-deposit-vs-advances-growth
 
@@ -338,7 +338,7 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/4 | 5.61s |
+| wiki | gpt-5-mini | 2/4 | 5.61s |
 | rag | gpt-5-mini | 0/4 | 36.88s |
 
 ### q43-credit-driver-9mfy26
@@ -347,8 +347,8 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/4 | 9.64s |
-| rag | gpt-5-mini | 0/4 | 12.66s |
+| wiki | gpt-5-mini | 1/4 | 9.64s |
+| rag | gpt-5-mini | 4/4 | 12.66s |
 
 ### q44-pass-through-asymmetry
 
@@ -356,8 +356,8 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/4 | 16.61s |
-| rag | gpt-5-mini | 0/4 | 15.31s |
+| wiki | gpt-5-mini | 3/4 | 16.61s |
+| rag | gpt-5-mini | 1/4 | 15.31s |
 
 ### q45-margin-recovery-view
 
@@ -366,7 +366,7 @@
 | Agent | Model | Score | Latency |
 |---|---|---|---|
 | wiki | gpt-5-mini | 0/4 | 10.8s |
-| rag | gpt-5-mini | 0/4 | 8.02s |
+| rag | gpt-5-mini | 1/4 | 8.02s |
 
 ### q46-capital-buffers
 
@@ -374,8 +374,8 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/3 | 9.06s |
-| rag | gpt-5-mini | 0/3 | 8.87s |
+| wiki | gpt-5-mini | 1/3 | 9.06s |
+| rag | gpt-5-mini | 2/3 | 8.87s |
 
 ### q47-non-interest-income-progression
 
@@ -383,7 +383,7 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/6 | 18.73s |
+| wiki | gpt-5-mini | 6/6 | 18.73s |
 | rag | gpt-5-mini | 0/6 | 10.24s |
 
 ### q48-pat-progression
@@ -392,7 +392,7 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/6 | 11.16s |
+| wiki | gpt-5-mini | 6/6 | 11.16s |
 | rag | gpt-5-mini | 0/6 | 18.46s |
 
 ### q49-asset-quality-secured
@@ -402,7 +402,7 @@
 | Agent | Model | Score | Latency |
 |---|---|---|---|
 | wiki | gpt-5-mini | 0/3 | 24.87s |
-| rag | gpt-5-mini | 0/3 | 8.99s |
+| rag | gpt-5-mini | 2/3 | 8.99s |
 
 ### q5-casa-trend
 
@@ -419,7 +419,7 @@
 
 | Agent | Model | Score | Latency |
 |---|---|---|---|
-| wiki | gpt-5-mini | 0/3 | 18.01s |
+| wiki | gpt-5-mini | 1/3 | 18.01s |
 | rag | gpt-5-mini | 0/3 | 13.11s |
 
 ### q6-deposits-q1fy26
