@@ -1,0 +1,22 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local sandboxes
+/tmp/
+
+# Eval outputs except checked-in summary files
+eval/runs/_rag_index.npz
+eval/runs/*/results.jsonl
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
