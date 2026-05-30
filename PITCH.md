@@ -33,46 +33,52 @@ PITCH.md    # this file
 
 ## Headline metrics
 
-First end-to-end run: 5 hand-authored corp-fin questions over the 6
-BCG decks. Same questions, same models, same source PDFs. Only the
-retrieval/synthesis strategy differs.
+50 hand-authored corp-fin questions, 173 expected facts, GPT-5 mini
+via OpenRouter. Cleanly-judged subset (14 cells excluded as
+`JUDGE_ERROR` after OpenRouter HTTP 402 mid-run):
 
-| System         | Sonnet 4.6     | GPT-5 mini     |
-|----------------|---------------:|---------------:|
-| Baseline RAG   |  9/23 (39%)    |  9/23 (39%)    |
-| LLMWiki agent  | 23/23 (100%)   | 23/23 (100%)   |
+| Question type           | Wiki agent      | RAG baseline   |
+|-------------------------|----------------:|---------------:|
+| Lookup (single-period)  | 37/43 (86%)     | 24/43 (56%)    |
+| Synthesis (cross-period)| 73/77 (95%)     | 8/71 (11%)     |
 
-Run id: `eval/runs/20260530-024220/`. RAG: 350-word chunks of the 6
+Run id: `eval/runs/20260530-033125/`. RAG: 350-word chunks of the 6
 PDFs, sentence-transformers MiniLM-L6 embeddings, top-8 retrieval.
 Wiki: full `wiki/*.md` (~24 KB) stuffed into the system prompt.
 
+See `README.md` for charts and `wiki/eval-failure-taxonomy.md` for
+the F1–F8 hand-coded breakdown of every wrong cell.
+
 ### Where the gap comes from
 
-RAG matched the wiki on the two questions answerable from a single
-section of one deck (the 9M FY26 ROA-tree table; the rate-cycle
-narrative). RAG scored 0 on all three cross-period synthesis questions
-(MSME vs. retail across 6 periods; PAT deceleration FY25→FY26; CASA
-trend across 6 periods). Failure mode: top-k pulled fragments from
-individual decks but couldn't compose the longitudinal view. Sample
-RAG response: *"I can only provide data through 9M FY25 — there is no
-data available for 9M FY26 in the provided passages."* The relevant
-9M FY26 chunks existed in the index; the retriever just didn't
-surface them for that query.
+100% of RAG's failures are retrieval-driven (codes F1+F2+F3+F4 in the
+taxonomy). Top-k over visually-heavy slide PDFs couldn't surface the
+right page for cross-period questions. Sample RAG response (q5, *CASA
+trend across 6 periods*):
 
-The wiki had the cross-period tables pre-compiled in
-`wiki/banking-sector-roundup.md` and `wiki/indian-banking-fy25-fy26.md`,
-so those questions reduced to lookups.
+> *"I cannot provide period-by-period industry CASA ratio numbers
+> because the provided passages do not contain industry CASA ratio
+> values for H1 FY25, FY26, or 9M FY26."*
 
-Total cost of this run: under $1 via OpenRouter.
+The figures were in the PDF corpus. The retriever just didn't surface
+them. The wiki had all six periods in a single pre-built table, so
+the question was a lookup.
+
+Total cost of this run: under $2 via OpenRouter.
 
 ## Failures we publish
 
-Even at 23/23 the wiki agent got numbers wrong inside otherwise-correct
-answers (e.g., reading the highest figure of a range as the FY25
-specific value). Per-fact grading missed these because the expected
-fact was the range itself. This is the kind of subtle hallucination
-the next iteration of the eval (and the in-house golden suite per
-[howtoeval.com](https://www.howtoeval.com/)) needs to catch.
+Per-fact grading missed subtle hallucinations even on cells scored
+"correct" (e.g., reading the highest figure of a range as a specific
+period value). The judge also marked NO when answers asserted the
+fact in different words (taxonomy code F7, ≥3 cells). The next
+iteration of the eval — per [howtoeval.com](https://www.howtoeval.com/)
+"floor raising" — should:
+
+1. Tighten the judge before adding more questions.
+2. Tighten the wiki agent prompt to volunteer secondary facts (F5).
+3. Patch the FY25 NIM YoY gap in `wiki/banking-sector-roundup.md` (F8).
+4. Re-grade the 14 `JUDGE_ERROR` cells once OpenRouter is topped up.
 
 ## Failures we publish
 
