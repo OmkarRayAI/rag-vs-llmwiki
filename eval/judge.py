@@ -3,13 +3,18 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _models import answer  # noqa: E402
+from _models import MODELS, answer  # noqa: E402
 
-JUDGE_MODEL = "claude-sonnet-4-6"
+# Default to Gemini Flash: cheap, OpenRouter-accessible, strict on
+# paraphrase. Override with EVAL_JUDGE_MODEL to use a different judge.
+# Add the model id to MODELS in _models.py if it isn't already known.
+JUDGE_MODEL = os.environ.get("EVAL_JUDGE_MODEL", "gemini-2.5-flash")
+MODELS.setdefault("gemini-2.5-flash", "google/gemini-2.5-flash")
 
 PROMPT = """You are grading whether an answer asserts a specific fact.
 
